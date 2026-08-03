@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { CheckCircle2, Target, Eye, Heart, ArrowRight } from 'lucide-react';
+import { CheckCircle2, Target, Eye, Heart, ArrowRight, Trophy } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SectionHeading from '../components/ui/SectionHeading';
 import TrustStats from '../components/home/TrustStats';
@@ -147,6 +147,83 @@ export default function About() {
       </section>
 
       <TrustStats />
+
+      {/* Award-Winning Section */}
+      <section className="bg-deepBlack py-20 lg:py-28">
+        <div className="container-px grid items-center gap-14 lg:grid-cols-2">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.7 }}
+            className="relative"
+          >
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 shadow-2xl">
+              <img
+                src="/images/about/image.png"
+                alt="Award ceremony — Premier English Academy receiving the Excellence Award"
+                className="w-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-deepBlack/60 to-transparent" />
+            </div>
+            {/* floating badge */}
+            <div className="absolute -bottom-5 -right-4 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 backdrop-blur-md">
+              <span className="text-2xl">🏆</span>
+              <div className="leading-tight">
+                <p className="font-display text-sm font-extrabold text-cleanWhite">Multiple Awards</p>
+                <p className="text-xs text-white/60">Recognised excellence in education</p>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.7 }}
+          >
+            <span className="eyebrow">
+              <span className="inline-block h-px w-6 bg-brandRed" />
+              Recognition
+            </span>
+            <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-cleanWhite sm:text-4xl lg:text-5xl">
+              An Award-Winning <span className="text-brandRed">Academy.</span>
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-white/65">
+              Our commitment to quality communication training has been recognised at prestigious
+              regional and national platforms. The Marathwada Excellence Award and several state-level
+              honours stand as a testament to our learners' transformation and our trainers'
+              dedication.
+            </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {[
+                { title: 'Marathwada Excellence Award', year: '2023' },
+                { title: 'State-Level Education Recognition', year: '2022' },
+                { title: 'Best Communication Academy', year: '2021' },
+                { title: 'Outstanding Training Institute', year: '2020' },
+              ].map((award, i) => (
+                <motion.div
+                  key={award.title}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4"
+                >
+                  <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brandRed/15 text-brandRed">
+                    <Trophy className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-cleanWhite">{award.title}</p>
+                    <p className="text-xs text-white/50">{award.year}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </>
   );
 }
