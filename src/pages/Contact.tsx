@@ -3,10 +3,10 @@ import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const contactInfo = [
-  { Icon: Mail, label: 'Email', value: 'hello@premierenglishacademy.com' },
-  { Icon: Phone, label: 'Phone', value: '+91 90000 00000' },
-  { Icon: MapPin, label: 'Location', value: 'Bengaluru · Online · On-site' },
-  { Icon: Clock, label: 'Hours', value: 'Mon–Sat, 9 AM – 7 PM IST' },
+  { Icon: Mail, label: 'Email', value: 'premierspoeng@gmail.com' },
+  { Icon: Phone, label: 'Phone', value: '+91 90750 04419' },
+  { Icon: MapPin, label: 'Location', value: '3rd Floor, Rukmini Complex, Opp. Global Hospital, Near ITI Rd, VIP Road, Nanded.' },
+  { Icon: Clock, label: 'Hours', value: 'Mon - Sat : 07:00 AM - 08:00 PM Sun : Closed' },
 ];
 
 export default function Contact() {
