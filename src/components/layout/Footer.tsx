@@ -146,19 +146,19 @@ export default function Footer() {
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-brandRed">
                   <Mail className="h-4 w-4" />
                 </span>
-                hello@premierenglishacademy.com
+                premierspoeng@gmail.com
               </li>
               <li className="flex items-center gap-3">
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-brandRed">
                   <Phone className="h-4 w-4" />
                 </span>
-                +91 90000 00000
+                +91 90750 04419
               </li>
               <li className="flex items-center gap-3">
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-brandRed">
                   <MapPin className="h-4 w-4" />
                 </span>
-                Bengaluru · Online · On-site
+                3rd Floor, Rukmini Complex, Opp. Global Hospital, Near ITI Rd, VIP Road, Nanded.
               </li>
             </ul>
           </div>
