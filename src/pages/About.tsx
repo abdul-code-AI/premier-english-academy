@@ -160,7 +160,7 @@ export default function About() {
           >
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 shadow-2xl">
               <img
-                src="/images/about/image.png"
+                src="/images/about/image copy.png"
                 alt="Award ceremony — Premier English Academy receiving the Excellence Award"
                 className="w-full object-cover"
                 loading="lazy"
