@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, AlertCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle2, AlertCircle, ArrowRight, MessageCircle } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from '../../lib/supabaseClient';
 import WaveDecoration from '../ui/WaveDecoration';
 
@@ -69,8 +69,25 @@ export default function ConsultationForm() {
       } else {
         await new Promise((r) => setTimeout(r, 1200));
       }
+
+      const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER?.replace(/\D/g, '') ?? '';
+      const messageLines = [
+        `New consultation request`,
+        `Name: ${values.fullName}`,
+        `Email: ${values.email}`,
+        `Phone: ${values.phone}`,
+        `Interest: ${values.interestArea}`,
+        `Format: ${values.learningFormat}`,
+      ];
+      if (values.message) messageLines.push(`Message: ${values.message}`);
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+        messageLines.join('\n')
+      )}`;
+
       setSubmitted(true);
       reset();
+
+      window.open(whatsappUrl, '_blank');
     } catch (err) {
       setSubmitError(
         err instanceof Error ? err.message : 'Something went wrong. Please try again.'
@@ -154,16 +171,30 @@ export default function ConsultationForm() {
                 </span>
                 <h3 className="font-display text-2xl font-bold text-cleanWhite">Request received!</h3>
                 <p className="max-w-sm text-sm text-white/70">
-                  Thank you for reaching out. One of our advisors will contact you within 24 hours
-                  to schedule your free consultation.
+                  Thank you for reaching out. We've opened WhatsApp so you can send your details
+                  directly to our team — an advisor will respond within 24 hours.
                 </p>
-                <button
-                  type="button"
-                  onClick={() => setSubmitted(false)}
-                  className="mt-2 inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-cleanWhite transition hover:border-brandRed hover:text-brandRed"
-                >
-                  Submit another request
-                </button>
+                <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
+                  <a
+                    href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER?.replace(
+                      /\D/g,
+                      ''
+                    ) ?? ''}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1ebe5d]"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    Open WhatsApp
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setSubmitted(false)}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-cleanWhite transition hover:border-brandRed hover:text-brandRed"
+                  >
+                    Submit another request
+                  </button>
+                </div>
               </motion.div>
             ) : (
               <motion.form
